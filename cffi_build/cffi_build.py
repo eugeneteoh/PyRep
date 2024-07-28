@@ -737,7 +737,9 @@ ffibuilder.set_source(
     """,
     libraries=['coppeliaSim'],
     library_dirs=[os.environ['COPPELIASIM_ROOT']],
-    include_dirs=[cffi_path])
+    include_dirs=[cffi_path],
+    extra_link_args=[f"-Wl,-rpath,{os.environ['COPPELIASIM_ROOT']}"],
+)
 
 # For some reason, cffi makes it such that it looks for libv_rep.so.1
 # rather than libv_rep.so. So we add a symlink.
